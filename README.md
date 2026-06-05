@@ -91,9 +91,9 @@ Lo comprime con usando la función sigmoide una curva de forma suave, que asigna
 </p>
 
 Se interpreta el valor como la probabilidad de un resultado por ejemplo:
-•	0 = 0 % probabilidades de que si suceda
-•	0.27 = 27% probabilidades de que si suceda
-•	1 = 100% probabilidades de que si suceda
+* 0 = 0 % probabilidades de que si suceda
+* 0.27 = 27% probabilidades de que si suceda
+* 1 = 100% probabilidades de que si suceda
 
 ### Función de costo - Log Loss
 
