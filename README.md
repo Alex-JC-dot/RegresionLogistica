@@ -56,6 +56,11 @@ OPCIÓN B — Desde un IDE (VS Code, PyCharm, etc):
 - 6 variables continuas de entrada (cpu_uso, ram_uso, latencia_ms, temperatura_c, procesos, disco_uso)
 - Interfaz gráfica con CustomTkinter para diagnóstico en tiempo real
 
+##Planteamiento de la problema 
+En la administración de servidores, cuando ocurre un fallo, el equipo técnico necesita saber rápidamente qué tipo de fallo es para tomar la acción correcta. No es lo mismo un problema de CPU (que requiere optimizar procesos o actualizar hardware) que un fallo de red (que requiere revisar conectividad) o un fallo de disco (que requiere reemplazar almacenamiento).
+El problema es: dado un conjunto de 6 métricas continuas que un servidor reporta en tiempo real (uso de CPU, uso de RAM, latencia de red, temperatura del procesador, cantidad de procesos activos y uso de disco), clasificar automáticamente el tipo de fallo entre 4 categorías posibles: sobrecarga de CPU, fallo de memoria RAM, fallo de red o fallo de disco.
+
+
 ## Sustento matemático 
 La regresión logística La Regresión Logística es un algoritmo de aprendizaje supervisado utilizado para predecir una variable categórica a partir de variables continuas. A pesar de su nombre, no es un método de regresión sino de clasificación, ya que su salida es una probabilidad entre 0 y 1 que se asigna a una clase
 
