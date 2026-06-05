@@ -95,7 +95,7 @@ Se interpreta el valor como la probabilidad de un resultado por ejemplo:
 •	0.27 = 27% probabilidades de que si suceda
 •	1 = 100% probabilidades de que si suceda
 
-### Función de perdida - Log Loss
+### Función de costo - Log Loss
 
 ¿Por qué no usar sigmoide?  Porque hace que la función de error quede con muchos mínimos locales y el descenso de gradiente se atasca. Necesitas una función más "amigable" matemáticamente.
 Normalmente cuando haces una predicción y fallas mucho depende del porcentaje de tu predicción, es decir que mientras más pequeño sea tu porcentaje menos riesgo habrá.
