@@ -127,6 +127,7 @@ pensemos en el problema planteado (de forma binaria) *diagnóstico de servidores
 * Servidor fallando = 1- p (abusando un poco de la notación)
 
 <p align ="center">
+  <img width="414" height="122" alt="Captura de pantalla 2026-06-04 231921" src="https://github.com/user-attachments/assets/983c355a-9fa0-45be-a66f-e60e94d6ef49" />
   <img width="479" height="68" alt="Captura de pantalla 2026-06-05 014910"   src="https://github.com/user-attachments/assets/d4d8f161-f671-47fb-bedd-46d38242880a" />
   <br>
   <i>Función de costo</i>
