@@ -4,13 +4,51 @@ Este es un trabajo donde se entrenó un modelo para la clasificación de fallos 
 
 # Instrucciones del script
 
+  regresionLogistica.py   →  Archivo principal. Contiene el
+                             entrenamiento y la interfaz gráfica.
 
-## Requisitos
+  server_failures.data    →  Dataset de 1,280 registros con 4 clases balanceadas (320 c/u).
+                             Formato CSV sin cabecera.
+
+  model_servidor.pkl      →  Modelo guardado (referencia).No es requerido para ejecutar     regresionLogistica.py
+
+
+## Requisitos y Dependencias 
 - Python 3.13 o superior
-- numpy
-- pandas
-- customtkinter
-- matplotlib
+- numpy →  Cálculo matricial y entrenamiento
+- pandas   →  Carga y procesamiento del dataset
+- matplotlib →  Gráfica del espacio de decisión (PCA 2D)
+- customtkinter → Interfaz gráfica moderna
+
+Para instalar todas de una vez, abrir una terminal y ejecutar:
+
+      pip install numpy pandas matplotlib customtkinter
+
+Si se tiene más de una versión de Python, usar:
+
+      py -3.13 -m pip install numpy pandas matplotlib customtkinter
+
+# Como correr la aplicación 
+
+OPCIÓN A — Desde terminal ()
+  1. Abrir cmd o PowerShell.
+  2. Navegar a la carpeta del proyecto:
+
+         cd "D:\Archivo_donde_esta_regresionLogistica
+
+  3. Ejecutar:
+
+         python regresionLogistica.py
+
+     O si hay múltiples versiones de Python:
+
+         py -3.13 regresionLogistica.py
+
+OPCIÓN B — Desde un IDE (VS Code, PyCharm, etc):
+  1. Abrir la carpeta del proyecto en el IDE.
+  2. Seleccionar el intérprete Python 3.13.
+  3. Abrir regresionLogistica.py y presionar Run.
+
 
 ## Características del proyecto
 - Dataset simulado de 1,280 registros con ruido gaussiano
