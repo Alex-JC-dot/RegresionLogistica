@@ -101,7 +101,7 @@ Se interpreta el valor como la probabilidad de un resultado por ejemplo:
 Normalmente cuando haces una predicción y fallas mucho depende del porcentaje de tu predicción, es decir que mientras más pequeño sea tu porcentaje menos riesgo habrá.
 
 <p align = "center">
-  <img width="239" height="42" alt="Captura de pantalla 2026-06-05 013748" src="https://github.com/user-attachments/assets/4987344c-fbaa-4641-bd47-89fd58bda8e4" />
+ <img width="371" height="66" alt="Captura de pantalla 2026-06-05 044414" src="https://github.com/user-attachments/assets/59bdb00c-2210-415a-9026-8f3528ae3da8" />
   <br>
   <i> Función de logarítmica</i>
 </p>
