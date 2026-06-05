@@ -14,6 +14,7 @@ Este es un trabajo donde se entrenó un modelo para la clasificación de fallos 
 
 
 ## Requisitos y Dependencias 
+
 - Python 3.13 o superior
 - numpy →  Cálculo matricial y entrenamiento
 - pandas   →  Carga y procesamiento del dataset
