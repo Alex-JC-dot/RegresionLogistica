@@ -58,6 +58,7 @@ OPCIÓN B — Desde un IDE (VS Code, PyCharm, etc):
 - Interfaz gráfica con CustomTkinter para diagnóstico en tiempo real
 
 ##Planteamiento de la problema 
+
 En la administración de servidores, cuando ocurre un fallo, el equipo técnico necesita saber rápidamente qué tipo de fallo es para tomar la acción correcta. No es lo mismo un problema de CPU (que requiere optimizar procesos o actualizar hardware) que un fallo de red (que requiere revisar conectividad) o un fallo de disco (que requiere reemplazar almacenamiento).
 El problema es: dado un conjunto de 6 métricas continuas que un servidor reporta en tiempo real (uso de CPU, uso de RAM, latencia de red, temperatura del procesador, cantidad de procesos activos y uso de disco), clasificar automáticamente el tipo de fallo entre 4 categorías posibles: sobrecarga de CPU, fallo de memoria RAM, fallo de red o fallo de disco.
 
