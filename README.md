@@ -1,8 +1,8 @@
-# Regresión Logística — Predictor de Fallos de Servidor
+# Regresión Logística —
 
-<<<<<<< HEAD
-Modelo de regresión logística multiclase implementado **desde cero** (solo NumPy) para diagnosticar el tipo de fallo en un servidor. Usa la estrategia One-vs-All con 4 clasificadores y una interfaz gráfica con CustomTkinter.
-=======
+Modelo de regresión logística multiclase implementado solo NumPy para diagnosticar el tipo de fallo en un servidor. Usa la estrategia One-vs-All con 4 clasificadores y una interfaz gráfica con CustomTkinter.
+
+
   regresionLogistica.py   →  Archivo principal. Contiene el
                              entrenamiento y la interfaz gráfica.
 
@@ -49,7 +49,7 @@ OPCIÓN B — Desde un IDE (VS Code, PyCharm, etc):
   2. Seleccionar el intérprete Python 3.13.
   3. Abrir regresionLogistica.py y presionar Run.
 
->>>>>>> 4ee7d910875bbecca769a0807593669cfd2c96bf
+
 
 ## Características del proyecto
 - Dataset simulado de 1,280 registros con ruido gaussiano
@@ -60,7 +60,6 @@ OPCIÓN B — Desde un IDE (VS Code, PyCharm, etc):
 
 ---
 
-<<<<<<< HEAD
 ## Requisitos
 
 - Python **3.10 o superior** (probado en 3.13)
@@ -68,7 +67,7 @@ OPCIÓN B — Desde un IDE (VS Code, PyCharm, etc):
 
 ---
 
-## Instalación y ejecución
+## Guía para la nstalación y ejecución
 
 ### 1. Clonar el repositorio
 
@@ -272,4 +271,3 @@ Ejemplo de predicción:
 | RAM         | 0.2%         |
 | Red         | 0.1%         |
 | Disco       | 0.1%         |
->>>>>>> 4ee7d910875bbecca769a0807593669cfd2c96bf
