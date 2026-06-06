@@ -1,4 +1,5 @@
 import os
+import pickle
 import threading
 import numpy as np
 import pandas as pd
@@ -16,6 +17,8 @@ _COLS = ["cpu_uso", "ram_uso", "latencia_ms", "temperatura_c", "procesos", "disc
 
 COLORES       = ["#e74c3c", "#e67e22", "#3498db", "#9b59b6"]
 NOMBRES_CLASE = ["Fallo de CPU", "Fallo de RAM", "Fallo de Red", "Fallo de Disco"]
+COLOR_OK      = "#2ecc71"
+UMBRAL_FALLO  = 0.5   # si ningún clasificador supera este valor → sin fallo
 BG_FIG  = "#16213e"
 BG_AXES = "#0f1c36"
 
@@ -107,16 +110,23 @@ def entrenar_modelo(callback=None):
     V_pca      = Vt[:2].T           # (6 features, 2 componentes)
     X_train_2d = X_train @ V_pca    # proyección de entrenamiento a 2D
 
-    return {
+    modelo = {
         "clasificadores": clasificadores,
         "media":          media,
         "std":            std,
         "clases":         ["CPU", "RAM", "Red", "Disco"],
         "accuracy":       acc,
-        "V_pca":          V_pca,       # componentes principales
-        "X_train_2d":     X_train_2d,  # puntos de entrenamiento en 2D
+        "V_pca":          V_pca,
+        "X_train_2d":     X_train_2d,
         "y_train":        y_train,
     }
+
+    pkl_path = os.path.join(BASE_DIR, "modelo.pkl")
+    with open(pkl_path, "wb") as f:
+        pickle.dump(modelo, f)
+    print(f"Modelo guardado en: {pkl_path}")
+
+    return modelo
 
 #  APLICACIÓN
 
@@ -125,7 +135,7 @@ class App:
         self.root   = root
         self.modelo = None
         self.root.title("Predictor de Fallos de Servidor")
-        self.root.geometry("500x860")
+        self.root.geometry("500x875")
         self.root.resizable(False, False)
         self._build_loading()
         threading.Thread(target=self._run_training, daemon=True).start()
@@ -194,23 +204,23 @@ class App:
     # ── Encabezado ────────────────────────────────────────────────────────────
 
     def _build_header(self):
-        enc = ctk.CTkFrame(self.root, fg_color="#1a1a2e", corner_radius=0, height=65)
+        enc = ctk.CTkFrame(self.root, fg_color="#1a1a2e", corner_radius=0, height=55)
         enc.pack(fill="x")
         enc.pack_propagate(False)
         ctk.CTkLabel(enc, text="🖥  Predictor de Fallos",
-                     font=("Arial", 20, "bold"), text_color="white").pack(pady=6)
+                     font=("Arial", 18, "bold"), text_color="white").pack(pady=4)
         ctk.CTkLabel(enc,
                      text=f"Diagnóstico de servidores  •  Accuracy: {self.modelo['accuracy']:.1%}",
-                     font=("Arial", 11), text_color="#aaaaaa").pack()
+                     font=("Arial", 10), text_color="#aaaaaa").pack()
 
     # ── Entradas ──────────────────────────────────────────────────────────────
 
     def _build_inputs(self):
         frame_in = ctk.CTkFrame(self.root, corner_radius=12, fg_color="#16213e")
-        frame_in.pack(padx=25, pady=12, fill="x")
+        frame_in.pack(padx=25, pady=6, fill="x")
         ctk.CTkLabel(frame_in, text="Métricas del servidor",
-                     font=("Arial", 13, "bold"), text_color="#aaaaaa").pack(pady=(12, 4))
-        ctk.CTkFrame(frame_in, height=1, fg_color="#2a2a5a").pack(fill="x", padx=15, pady=4)
+                     font=("Arial", 12, "bold"), text_color="#aaaaaa").pack(pady=(8, 2))
+        ctk.CTkFrame(frame_in, height=1, fg_color="#2a2a5a").pack(fill="x", padx=15, pady=2)
 
         campos = [
             ("cpu",         "⚡  CPU (%)"),
@@ -224,24 +234,24 @@ class App:
         self.entradas = {}
         for nombre, etiqueta in campos:
             fila = ctk.CTkFrame(frame_in, fg_color="transparent")
-            fila.pack(fill="x", padx=20, pady=3)
+            fila.pack(fill="x", padx=20, pady=2)
             ctk.CTkLabel(fila, text=etiqueta, width=165,
-                         anchor="w", font=("Arial", 12)).pack(side="left")
-            e = ctk.CTkEntry(fila, width=145, height=32, corner_radius=8)
+                         anchor="w", font=("Arial", 11)).pack(side="left")
+            e = ctk.CTkEntry(fila, width=145, height=28, corner_radius=8)
             e.pack(side="right")
             self.entradas[nombre] = e
 
-        ctk.CTkFrame(frame_in, height=1, fg_color="#2a2a5a").pack(fill="x", padx=15, pady=8)
+        ctk.CTkFrame(frame_in, height=1, fg_color="#2a2a5a").pack(fill="x", padx=15, pady=5)
 
     # ── Botón ─────────────────────────────────────────────────────────────────
 
     def _build_button(self):
         ctk.CTkButton(
-            self.root, text="DIAGNOSTICAR", height=42,
-            font=("Arial", 14, "bold"), corner_radius=10,
+            self.root, text="DIAGNOSTICAR", height=38,
+            font=("Arial", 13, "bold"), corner_radius=10,
             fg_color="#0f3460", hover_color="#e94560",
             command=self._diagnosticar
-        ).pack(pady=8)
+        ).pack(pady=5)
 
     # ── Resultado ─────────────────────────────────────────────────────────────
 
@@ -250,11 +260,11 @@ class App:
         frame_res.pack(padx=25, pady=4, fill="x")
         self.lbl_resultado = ctk.CTkLabel(
             frame_res, text="Esperando diagnóstico...",
-            font=("Arial", 15, "bold"), text_color="#555577"
+            font=("Arial", 13, "bold"), text_color="#555577"
         )
-        self.lbl_resultado.pack(pady=14)
+        self.lbl_resultado.pack(pady=8)
 
-    # ── Gráfica: espacio de decisión (PCA 2D) ─────────────────────────────────
+    # ── Gráfica: espacio de decisión (PCA 2D) 
 
     def _build_plot(self):
         frame_plot = ctk.CTkFrame(self.root, corner_radius=12, fg_color="#16213e")
@@ -336,23 +346,31 @@ class App:
             probs = [float(_sigmoid(z)) for z in zs]
 
             # La clase ganadora es la de mayor probabilidad
-            clase = int(np.argmax(probs))
+            clase     = int(np.argmax(probs))
+            sin_fallo = probs[clase] < UMBRAL_FALLO
 
             # Actualizar etiqueta de resultado
-            self.lbl_resultado.configure(
-                text=f"⚠  {NOMBRES_CLASE[clase]}   —   Confianza: {probs[clase]*100:.1f}%",
-                text_color=COLORES[clase]
-            )
+            if sin_fallo:
+                self.lbl_resultado.configure(
+                    text=f"OK  Servidor operando con normalidad   —   Max: {probs[clase]*100:.1f}%",
+                    text_color=COLOR_OK
+                )
+            else:
+                self.lbl_resultado.configure(
+                    text=f"⚠  {NOMBRES_CLASE[clase]}   —   Confianza: {probs[clase]*100:.1f}%",
+                    text_color=COLORES[clase]
+                )
 
             # Proyectar el punto de entrada al espacio PCA y marcarlo en la gráfica
             X_2d_pred = X_sc @ self.modelo["V_pca"]   # (2,)
+            color_punto = COLOR_OK if sin_fallo else COLORES[clase]
 
             if self._punto_pred:
                 self._punto_pred.remove()
 
             self._punto_pred = self.ax.scatter(
                 X_2d_pred[0], X_2d_pred[1],
-                color=COLORES[clase], s=220, marker="*",
+                color=color_punto, s=220, marker="*",
                 edgecolors="white", linewidths=0.8, zorder=5
             )
 
@@ -362,7 +380,6 @@ class App:
             messagebox.showerror("Error", "Ingresá solo números en los campos")
         except Exception as e:
             messagebox.showerror("Error", str(e))
-
 
 # ============
 
