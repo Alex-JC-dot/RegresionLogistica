@@ -121,31 +121,7 @@ Al ejecutarlo:
 
 ---
 
-## Dependencias detalladas
 
-| Librería | Versión mínima recomendada | Uso |
-|---|---|---|
-| `numpy` | 1.24 | Álgebra lineal, SVD, operaciones vectoriales |
-| `pandas` | 1.5 | Carga del dataset CSV |
-| `matplotlib` | 3.6 | Gráfica PCA embebida en la UI |
-| `customtkinter` | 5.0 | Interfaz gráfica con tema dark |
-
-Para instalar versiones específicas:
-
-```bash
-pip install numpy>=1.24 pandas>=1.5 matplotlib>=3.6 customtkinter>=5.0
-```
-
----
-
-## Guía técnica
-
-Para detalles completos del modelo (función sigmoide, descenso de gradiente, PCA, guardado del modelo, flujo de ejecución), ver [`guia_regresionLogistica.txt`](guia_regresionLogistica.txt).
-=======
-## Planteamiento del problema 
-
-En la administración de servidores, cuando ocurre un fallo, el equipo técnico necesita saber rápidamente qué tipo de fallo es para tomar la acción correcta. No es lo mismo un problema de CPU (que requiere optimizar procesos o actualizar hardware) que un fallo de red (que requiere revisar conectividad) o un fallo de disco (que requiere reemplazar almacenamiento).
-El problema es: dado un conjunto de 6 métricas continuas que un servidor reporta en tiempo real (uso de CPU, uso de RAM, latencia de red, temperatura del procesador, cantidad de procesos activos y uso de disco), clasificar automáticamente el tipo de fallo entre 4 categorías posibles: sobrecarga de CPU, fallo de memoria RAM, fallo de red o fallo de disco.
 
 
 ## Sustento matemático 
