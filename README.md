@@ -210,3 +210,6 @@ Ejemplo de predicción:
 | RAM         | 0.2%         |
 | Red         | 0.1%         |
 | Disco       | 0.1%         |
+
+**Autor:** Alex Josué Calatayud Mamani — Ing. Sistemas, USFX
+
