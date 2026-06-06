@@ -30,7 +30,15 @@ Si se tiene más de una versión de Python, usar:
 
 # Como correr la aplicación 
 
-OPCIÓN A — Desde terminal ()
+
+OPCIÓN A — Desde un IDE (VS Code, PyCharm, etc):
+  1. Abrir la carpeta del proyecto en el IDE.
+  2. Seleccionar el intérprete Python 3.13.
+  3. Verificar si instaló todas las dependencias
+  4. Abrir regresionLogistica.py y presionar Run.
+  5. Se creara automáticamente un .pkl (modelo entrenado guardado con pickle. Contiene los pesos (w), bias (b) de los  clasificadores)
+
+OPCIÓN B — Desde terminal ()
   1. Abrir cmd o PowerShell.
   2. Navegar a la carpeta del proyecto:
 
@@ -44,10 +52,7 @@ OPCIÓN A — Desde terminal ()
 
          py -3.13 regresionLogistica.py
 
-OPCIÓN B — Desde un IDE (VS Code, PyCharm, etc):
-  1. Abrir la carpeta del proyecto en el IDE.
-  2. Seleccionar el intérprete Python 3.13.
-  3. Abrir regresionLogistica.py y presionar Run.
+
 
 
 
@@ -57,11 +62,10 @@ OPCIÓN B — Desde un IDE (VS Code, PyCharm, etc):
 - 6 variables de entrada: `cpu_uso`, `ram_uso`, `latencia_ms`, `temperatura_c`, `procesos`, `disco_uso`
 - Visualización PCA 2D con fronteras de decisión embebida en la UI
 - Modelo serializado automáticamente en `modelo.pkl` tras el entrenamiento
+- Se realizó todo en regresionLogistica.py, el entrenamiento como la interfaz
 
 ---
 
-
----
 
 ## Guía para la ejecución
 
