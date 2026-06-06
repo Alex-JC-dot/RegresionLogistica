@@ -211,5 +211,6 @@ Ejemplo de predicción:
 | Red         | 0.1%         |
 | Disco       | 0.1%         |
 
-**Autor:** Alex Josué Calatayud Mamani — Ing. Sistemas, USFX
+
+**Autor:** Alex Josué Calatayud Mamani — USFX
 
