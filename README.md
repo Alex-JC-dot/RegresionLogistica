@@ -1,4 +1,4 @@
-# Regresión Logística —
+# Regresión Logística 
 
 Modelo de regresión logística multiclase implementado solo NumPy para diagnosticar el tipo de fallo en un servidor. Usa la estrategia One-vs-All con 4 clasificadores y una interfaz gráfica con CustomTkinter.
 
@@ -60,47 +60,10 @@ OPCIÓN B — Desde un IDE (VS Code, PyCharm, etc):
 
 ---
 
-## Requisitos
-
-- Python **3.10 o superior** (probado en 3.13)
-- pip
 
 ---
 
-## Guía para la nstalación y ejecución
-
-### 1. Clonar el repositorio
-
-```bash
-git clone https://github.com/alexcalatayud9/MAT205_IngSisCalatayudAlex.git
-cd MAT205_IngSisCalatayudAlex
-```
-
-### 2. (Opcional) Crear un entorno virtual
-
-```bash
-# Windows
-python -m venv venv
-venv\Scripts\activate
-
-# macOS / Linux
-python3 -m venv venv
-source venv/bin/activate
-```
-
-### 3. Instalar dependencias
-
-```bash
-pip install numpy pandas matplotlib customtkinter
-```
-
-> Las librerías `os`, `pickle` y `threading` son parte de la librería estándar de Python — **no requieren instalación**.
-
-### 4. Correr el script
-
-```bash
-python regresionLogistica.py
-```
+## Guía para la ejecución
 
 Al ejecutarlo:
 1. Se abre una ventana de carga mientras se entrena el modelo (~3 segundos).
